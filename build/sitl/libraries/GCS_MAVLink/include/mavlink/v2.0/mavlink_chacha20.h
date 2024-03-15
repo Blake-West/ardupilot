@@ -24,6 +24,7 @@
  * SOFTWARE.
  */
 
+
 // Remove this to disable the file
 // Also in mavlink_helpers.h
 // #define MAVLINK_NO_ENCRYPTION
@@ -31,13 +32,16 @@
 #include <openssl/evp.h>
 #include <openssl/rand.h>
 #endif
+
 #ifdef MAVLINK_USE_CXX_NAMESPACE
 namespace mavlink {
 #endif
 
+
 #ifndef MAVLINK_NO_ENCRYPTION
 
 // Random key for testing, use an actual secure key in practice
+
 static const uint32_t mavlink_chacha20_256_uint32_arr_key[8] = {
     0x80f346ad, 0x0b700f24, 0xb53fbc01, 0x09166e1a,
     0xd88a544e, 0xaa36c51a, 0x597436b3, 0x043c084c
@@ -103,7 +107,6 @@ static inline bool mavlink_chacha20_256_encrypt(const u_char * plain_text, const
     return MAVLINK_CHACHA20_SUCCESS;
 }
 
-
 /**
  * Decrypt an encrypted chacha20 payload
  *
@@ -112,6 +115,7 @@ static inline bool mavlink_chacha20_256_encrypt(const u_char * plain_text, const
  * @param plain_text Returned plain text
  * @param plain_text_len Size of returned plain text
  */
+
 static inline bool mavlink_chacha20_256_decrypt(const u_char * cipher_text, const uint8_t &cipher_text_len, 
     u_char * plain_text, uint8_t &plain_text_len) {
     
@@ -148,6 +152,7 @@ static inline bool mavlink_chacha20_256_decrypt(const u_char * cipher_text, cons
 
     return MAVLINK_CHACHA20_SUCCESS;
 }
+
 #endif
 
 #ifdef MAVLINK_USE_CXX_NAMESPACE
